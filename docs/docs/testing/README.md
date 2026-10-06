@@ -45,7 +45,7 @@ Các test **không cần mạng hay khóa API**: RAG API được giả lập b�
 ## Các file đã thêm vào repo
 
 ```
-docs/testing/                       ← bộ tài liệu này
+docs/docs/testing/                  ← bộ tài liệu này (hiển thị trong MkDocs)
 tests/mock_rag_server.py            ← RAG API giả lập (HTTP thật, đa luồng)
 tests/test_review_yaml_router.py    ← RV-01 … RV-13
 tests/test_blackbox_cli.py          ← TC-01 … TC-09
