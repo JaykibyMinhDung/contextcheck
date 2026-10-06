@@ -1,5 +1,7 @@
 # Báo cáo review code & kiểm thử ContextCheck
 
+> Bản tóm tắt. Bộ tài liệu chi tiết (actor, cách viết từng test case, danh sách lỗi) xem tại [README.md](README.md).
+
 - **Phiên bản kiểm thử:** `ccheck` 0.1.4 (commit `04aab4f`)
 - **Môi trường:** Linux, Python 3.11, cài bằng `poetry install`
 - **Lệnh chạy lại toàn bộ:** `poetry run pytest tests`
