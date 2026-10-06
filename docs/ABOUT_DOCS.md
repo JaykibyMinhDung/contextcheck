@@ -16,3 +16,24 @@ Install using `poetry install -E docs`
 * Go to `http://localhost:8000`
 
 Diagrams (Mermaid) are rendered in the browser from a CDN, so viewing them needs internet access.
+
+
+## Without Poetry (plain pip)
+
+Only the docs:
+
+```sh
+python -m venv .venv
+.venv\Scripts\activate          # Windows (PowerShell / cmd)
+# source .venv/bin/activate     # Linux / macOS
+pip install mkdocs "mkdocstrings[python]" pymdown-extensions
+cd docs
+mkdocs serve
+```
+
+To also run the test suite (Python 3.11 recommended), from the repository root:
+
+```sh
+pip install -e . pytest pytest-dotenv lorem
+python -m pytest tests
+```
