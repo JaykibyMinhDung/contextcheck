@@ -1,0 +1,16 @@
+# Cần mock server. Bộ regression hỏi-đáp gửi tới RAG giả lập
+config:
+  endpoint_under_test:
+    kind: cc_prompt_llm
+    url: http://127.0.0.1:8765/qa
+steps:
+  - name: Capital of Poland
+    request: What is the capital of Poland?
+    asserts:
+      - kind: equals
+        assertion: Warsaw is the capital of Poland.
+  - name: Capital of France
+    request: What is the capital of France?
+    asserts:
+      - kind: icontains
+        assertion: paris

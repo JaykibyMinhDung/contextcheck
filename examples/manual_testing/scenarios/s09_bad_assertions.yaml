@@ -1,0 +1,12 @@
+# 3 assertion: lỗi tên biến, không trả về bool, hợp lệ
+config:
+  endpoint_under_test:
+    kind: echo
+steps:
+  - name: Assertion errors are isolated
+    request: hello
+    asserts:
+      - 'undefined_name == 1'
+      - '1 + 1'
+      - kind: contains
+        assertion: hello

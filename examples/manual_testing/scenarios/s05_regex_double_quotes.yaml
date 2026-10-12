@@ -1,0 +1,10 @@
+# Regex viết trong nháy kép -> YAML không đọc được
+config:
+  endpoint_under_test:
+    kind: echo
+steps:
+  - name: regex
+    request: abc
+    asserts:
+      - kind: regex
+        assertion: "\w+"

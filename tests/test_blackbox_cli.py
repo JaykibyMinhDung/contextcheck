@@ -5,6 +5,7 @@ output and produced files are checked.
 """
 
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -27,11 +28,15 @@ FAILING_SCENARIO = PASSING_SCENARIO.replace("assertion: hello", "assertion: some
 
 
 def ccheck(*args: str, cwd: Path) -> subprocess.CompletedProcess:
+    # UTF-8 on both ends: Windows pipes default to the ANSI code page, which cannot encode the
+    # emoji printed by the console UI (tracked separately as defect D-14 / TC-42)
     return subprocess.run(
         [sys.executable, "-m", "contextcheck.run_tests", *args],
         capture_output=True,
-        text=True,
+        encoding="utf-8",
+        errors="replace",
         cwd=cwd,
+        env={**os.environ, "PYTHONIOENCODING": "utf-8"},
         timeout=120,
     )
 

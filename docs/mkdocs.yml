@@ -48,3 +48,4 @@ nav:
     - '4. E2E Q&A': testing/04_KIEM_THU_E2E_QA.md
     - '5. Đa luồng': testing/05_KIEM_THU_DA_LUONG.md
     - '6. Danh sách lỗi': testing/06_DANH_SACH_LOI.md
+    - '7. Hướng dẫn chạy và kiểm thử thủ công': testing/07_HUONG_DAN_CHAY_VA_KIEM_THU_THU_CONG.md

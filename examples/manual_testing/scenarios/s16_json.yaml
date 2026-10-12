@@ -1,0 +1,13 @@
+# TC-44: JSON hợp lệ và JSON hỏng
+config:
+  endpoint_under_test:
+    kind: echo
+steps:
+  - name: Valid JSON (expect PASS)
+    request: '{"name": "ContextCheck", "version": 1}'
+    asserts:
+      - kind: is-valid-json
+  - name: Malformed JSON (expect FAIL + log "Error message")
+    request: '{"name": "ContextCheck", "version": 1'
+    asserts:
+      - kind: is-valid-json

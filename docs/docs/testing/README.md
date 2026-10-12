@@ -13,13 +13,19 @@ Thư mục này ghi lại toàn bộ công việc review code và kiểm thử C
 | 4 | [04_KIEM_THU_E2E_QA.md](04_KIEM_THU_E2E_QA.md) | Luồng Q&A toàn trình, Retriever trả danh sách rỗng (E2E-01 … E2E-06) |
 | 5 | [05_KIEM_THU_DA_LUONG.md](05_KIEM_THU_DA_LUONG.md) | Kiểm thử đa luồng với 50 request (CC-01 … CC-03) |
 | 6 | [06_DANH_SACH_LOI.md](06_DANH_SACH_LOI.md) | 8 lỗi đã xác nhận: cách tái hiện, mức độ, actor bị ảnh hưởng, đề xuất sửa |
+| 7 | [07_HUONG_DAN_CHAY_VA_KIEM_THU_THU_CONG.md](07_HUONG_DAN_CHAY_VA_KIEM_THU_THU_CONG.md) | Cài và chạy dự án trên Windows; kiểm thử thủ công từng test case với mock server và kịch bản mẫu |
 
 ## Kết quả tổng
 
+Bảng dưới là phần của Đoàn Minh Dũng. Từ khi có thêm bộ test của 4 thành viên còn lại (`tests/test_sqa_*.py`, xem sheet "3. Test Cases" trong file Excel của nhóm), toàn bộ suite cho kết quả:
+
 ```
-poetry run pytest tests
-47 passed, 3 skipped, 8 xfailed
+python -m pytest tests
+131 passed, 5 skipped, 30 xfailed    # chỉ cài các gói bắt buộc
+132 passed, 3 skipped, 31 xfailed    # có thêm flake8, nbformat, nbclient, ipykernel
 ```
+
+Hướng dẫn cài đặt trên Windows và kiểm thử thủ công từng bước: [07_HUONG_DAN_CHAY_VA_KIEM_THU_THU_CONG.md](07_HUONG_DAN_CHAY_VA_KIEM_THU_THU_CONG.md).
 
 | Nhóm | File test | Số test | Đạt | Lỗi xác nhận (xfail) |
 |---|---|---|---|---|
@@ -51,6 +57,8 @@ tests/test_review_yaml_router.py    ← RV-01 … RV-13
 tests/test_blackbox_cli.py          ← TC-01 … TC-09
 tests/test_e2e_qa_flow.py           ← E2E-01 … E2E-06
 tests/test_concurrency.py           ← CC-01 … CC-03
+tests/test_sqa_*.py, sqa_http_stub.py ← TC-01 … TC-20, TC-31 … TC-50 của 4 thành viên còn lại
+examples/manual_testing/            ← mock server, kịch bản mẫu, script cho kiểm thử thủ công
 ```
 
 Không có file mã nguồn nào trong `contextcheck/` bị sửa: đây là đợt **kiểm thử và review**, chưa sửa lỗi.

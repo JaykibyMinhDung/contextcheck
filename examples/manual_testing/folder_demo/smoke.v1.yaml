@@ -1,0 +1,10 @@
+# Dùng cho chạy theo --folder và TC-45 (trùng tên báo cáo)
+config:
+  endpoint_under_test:
+    kind: echo
+steps:
+  - name: Smoke v1
+    request: smoke v1
+    asserts:
+      - kind: contains
+        assertion: smoke

@@ -1,0 +1,9 @@
+# Gõ sai tên biến: contry thay vì country
+variables:
+  country: Poland
+config:
+  endpoint_under_test:
+    kind: echo
+steps:
+  - name: Typo in variable name
+    request: "What is the capital of {{ contry }}?"

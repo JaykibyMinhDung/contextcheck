@@ -1,0 +1,6 @@
+# Step thiếu trường bắt buộc "request"
+config:
+  endpoint_under_test:
+    kind: echo
+steps:
+  - name: No request here

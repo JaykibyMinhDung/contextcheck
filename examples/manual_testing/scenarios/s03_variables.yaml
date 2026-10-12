@@ -1,0 +1,16 @@
+# Biến Jinja2 và default_request
+variables:
+  country: Poland
+
+config:
+  endpoint_under_test:
+    kind: echo
+  default_request:
+    language: en
+
+steps:
+  - name: Variable is rendered
+    request: "What is the capital of {{ country }}?"
+    asserts:
+      - kind: equals
+        assertion: "What is the capital of Poland?"

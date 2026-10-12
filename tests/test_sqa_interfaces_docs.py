@@ -48,9 +48,11 @@ def ccheck(*args: str, cwd: Path, env: dict | None = None) -> subprocess.Complet
     return subprocess.run(
         [sys.executable, "-m", "contextcheck.run_tests", *args],
         capture_output=True,
-        text=True,
+        encoding="utf-8",
+        errors="replace",
         cwd=cwd,
-        env={**os.environ, **(env or {})},
+        # UTF-8 by default so results do not depend on the OS code page; TC-42 overrides it
+        env={**os.environ, "PYTHONIOENCODING": "utf-8", **(env or {})},
         timeout=120,
     )
 
