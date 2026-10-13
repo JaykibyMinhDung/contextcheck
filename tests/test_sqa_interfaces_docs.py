@@ -120,6 +120,34 @@ def test_tc42_console_output_on_legacy_windows_code_page(scenario, encoding):
     assert result.returncode == 0, result.stderr[-300:]
 
 
+@pytest.mark.skipif(sys.platform == "win32", reason="Simulates a non-UTF-8 locale on POSIX")
+@pytest.mark.xfail(strict=True, reason="loaders/yaml.py opens files with the OS default encoding")
+def test_tc42_vietnamese_scenario_loads_under_a_non_utf8_locale(tmp_path):
+    # Windows uses cp1252/cp1258 by default; a POSIX "C" locale reproduces the same failure
+    scenario = tmp_path / "vi.yaml"
+    scenario.write_text(
+        "config:\n  endpoint_under_test:\n    kind: echo\nsteps:\n  - 'Đà Nẵng'\n", encoding="utf-8"
+    )
+    env = {**os.environ, "LC_ALL": "C", "LANG": "C", "PYTHONCOERCECLOCALE": "0", "PYTHONUTF8": "0"}
+    env.pop("PYTHONIOENCODING", None)
+    code = (
+        "import sys; from pathlib import Path; from contextcheck import TestScenario; "
+        "sys.exit(TestScenario.from_yaml(Path(sys.argv[1])).steps[0].request.message "
+        "!= '\\u0110\\u00e0 N\\u1eb5ng')"  # ASCII-only: argv is decoded with the C locale
+    )
+
+    result = subprocess.run(
+        [sys.executable, "-X", "utf8=0", "-c", code, str(scenario)],
+        capture_output=True,
+        encoding="utf-8",
+        errors="replace",
+        env=env,
+        timeout=120,
+    )
+
+    assert result.returncode == 0, result.stderr[-300:]
+
+
 # --- TC-43: Read-only output folder -------------------------------------------------------------
 
 
