@@ -13,7 +13,18 @@ plugins:
           paths: [../contextcheck]
           options:
             docstring_style: numpy
-      
+
+markdown_extensions:
+  - tables
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+
 nav:
   - 'Getting started': index.md
   - 'Core concepts':
@@ -28,5 +39,13 @@ nav:
     - 'Understanding test scenarios': user_guide/test_scenarios.md
     - 'Synthetic questions generator': user_guide/questions_generator.md
     - 'RAG configuration': user_guide/rag_configuration.md
-
-
+  - 'Kiểm thử (Testing)':
+    - 'Tổng quan': testing/README.md
+    - 'Báo cáo tóm tắt': testing/BAO_CAO_KIEM_THU.md
+    - '1. Phạm vi và actor': testing/01_PHAM_VI_VA_ACTOR.md
+    - '2. Review YAML và Test Router': testing/02_REVIEW_YAML_TEST_ROUTER.md
+    - '3. CLI hộp đen': testing/03_KIEM_THU_CLI_HOP_DEN.md
+    - '4. E2E Q&A': testing/04_KIEM_THU_E2E_QA.md
+    - '5. Đa luồng': testing/05_KIEM_THU_DA_LUONG.md
+    - '6. Danh sách lỗi': testing/06_DANH_SACH_LOI.md
+    - '7. Hướng dẫn chạy và kiểm thử thủ công': testing/07_HUONG_DAN_CHAY_VA_KIEM_THU_THU_CONG.md

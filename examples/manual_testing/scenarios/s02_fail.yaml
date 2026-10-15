@@ -1,0 +1,11 @@
+# Kịch bản trượt: assertion cố ý sai
+config:
+  endpoint_under_test:
+    kind: echo
+
+steps:
+  - name: Assertion that must fail
+    request: hello
+    asserts:
+      - kind: equals
+        assertion: something else

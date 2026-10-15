@@ -1,0 +1,30 @@
+# Metric tất định: mỗi step có 1 assertion, xem cột Valid / result từng step
+config:
+  endpoint_under_test:
+    kind: echo
+steps:
+  - name: "TC-31 equals is case sensitive (expect FAIL = correct)"
+    request: paris
+    asserts:
+      - kind: equals
+        assertion: Paris
+  - name: "TC-31 equals with trailing newline (expect PASS, actual FAIL = bug D-11)"
+    request: "Paris\n"
+    asserts:
+      - kind: equals
+        assertion: Paris
+  - name: "TC-32 icontains in long text (expect PASS)"
+    request: "Lorem ipsum dolor sit amet. The capital of France is PARIS. Consectetur adipiscing."
+    asserts:
+      - kind: icontains
+        assertion: paris
+  - name: "TC-32 contains-all with a string (expect FAIL, actual PASS = bug D-12)"
+    request: "zyx is backwards"
+    asserts:
+      - kind: contains-all
+        assertion: xyz
+  - name: "TC-49 regex example from docs, email mid-sentence (expect PASS, actual FAIL)"
+    request: "The HR department can be reached at hr@company.com."
+    asserts:
+      - kind: regex
+        assertion: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"

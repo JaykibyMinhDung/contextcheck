@@ -1,0 +1,9 @@
+# Cần mock server. Server trả HTTP 500
+config:
+  endpoint_under_test:
+    kind: tg_chatbot
+    url: http://127.0.0.1:8765/status/500
+    additional_headers: {}
+steps:
+  - first request
+  - second request

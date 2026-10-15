@@ -1,0 +1,13 @@
+# Cần mock server. Markdown, tiếng Việt và emoji đi qua tg_chatbot
+config:
+  endpoint_under_test:
+    kind: tg_chatbot
+    url: http://127.0.0.1:8765/echo
+    additional_headers:
+      X-API-KEY: demo
+steps:
+  - name: Markdown and Vietnamese are preserved
+    request: "**Đậm** _nghiêng_ `code` - Đà Nẵng 🇻🇳"
+    asserts:
+      - kind: equals
+        assertion: "**Đậm** _nghiêng_ `code` - Đà Nẵng 🇻🇳"

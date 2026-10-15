@@ -1,0 +1,8 @@
+# Cần mock server. Server trả HTTP 429 Too Many Requests
+config:
+  endpoint_under_test:
+    kind: tg_chatbot
+    url: http://127.0.0.1:8765/status/429
+    additional_headers: {}
+steps:
+  - rate limited request

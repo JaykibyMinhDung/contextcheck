@@ -1,0 +1,9 @@
+# TC-33: metric coherence không tồn tại
+config:
+  endpoint_under_test:
+    kind: echo
+steps:
+  - name: Coherence
+    request: hello
+    asserts:
+      - llm_metric: coherence

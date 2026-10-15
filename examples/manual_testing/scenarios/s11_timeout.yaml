@@ -1,0 +1,9 @@
+# Cần mock server. Server trả lời sau 35 s (timeout của ContextCheck là 30 s)
+config:
+  endpoint_under_test:
+    kind: tg_chatbot
+    url: http://127.0.0.1:8765/slow
+    additional_headers: {}
+    timeout: 5   # thử cấu hình timeout: KHÔNG có tác dụng (lỗi D-01)
+steps:
+  - slow request

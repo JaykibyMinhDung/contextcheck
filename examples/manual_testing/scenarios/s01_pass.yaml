@@ -1,0 +1,14 @@
+# Kịch bản đạt: endpoint echo trả lại đúng request
+config:
+  endpoint_under_test:
+    kind: echo
+
+steps:
+  - name: Echo returns the request
+    request: hello
+    asserts:
+      - kind: equals
+        assertion: hello
+      - kind: contains
+        assertion: ell
+      - '"hello" == response.message'

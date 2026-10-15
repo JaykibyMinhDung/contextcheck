@@ -1,0 +1,7 @@
+# Cần mock server. tg_chatbot không khai báo additional_headers
+config:
+  endpoint_under_test:
+    kind: tg_chatbot
+    url: http://127.0.0.1:8765/echo
+steps:
+  - hello

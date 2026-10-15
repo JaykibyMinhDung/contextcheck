@@ -1,0 +1,8 @@
+# Cần mock server. Server trả message là số (42) thay vì chuỗi
+config:
+  endpoint_under_test:
+    kind: tg_chatbot
+    url: http://127.0.0.1:8765/int
+    additional_headers: {}
+steps:
+  - hello

@@ -1,0 +1,12 @@
+# Bước 1 trượt, bước 2 bị bỏ qua khi dùng --exit-on-failure
+config:
+  endpoint_under_test:
+    kind: echo
+steps:
+  - name: Fails
+    request: hello
+    asserts:
+      - kind: equals
+        assertion: nope
+  - name: Skipped
+    request: world
